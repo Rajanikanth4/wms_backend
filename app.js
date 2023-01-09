@@ -6,7 +6,6 @@ const app = express();
 app.use(cors())
 app.use(express.json());
 app.post("/auth", async (req, res) => {
-    // console.log(req.body)
     const Url = "https://mingle-sso.se1.inforcloudsuite.com:443/BNJNUU88223X2YDS_TST/as/token.oauth2"
 
     axios.post(Url, req.body, {
@@ -26,7 +25,6 @@ app.post("/location", async (req, res) => {
             Authorization: req.body.headers.Authorization
         }
     }
-    // console.log(req.body)
     const location = req.body.location
     axios.get(`https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/BNJNUU88223X2YDS_TST_REDAWESOMEOWL_TST_SCE_PRD_0_wmwhse1/locations/${location}`, jsondata)
         .then(response => {
@@ -39,7 +37,6 @@ app.post("/location", async (req, res) => {
 
 
 app.post("/warehouse", async (req, res) => {
-    // console.log(req.body)
     axios.get("https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/enterprise/facilities", req.body)
         .then(response => {
             res.status(response.status).json(response.data)
@@ -53,7 +50,6 @@ app.post("/warehouse", async (req, res) => {
 // app.post("")
 app.post("/ownerValidate", async (req, res) => {
 
-    // console.log(req.body);
     const jsondata = {
         headers: {
             Authorization: req.body.headers.Authorization
@@ -61,7 +57,6 @@ app.post("/ownerValidate", async (req, res) => {
     }
     const owner = req.body.owner
     const warehouse = req.body.warehouse
-    // console.log(owner, warehouse + "...................");
     axios.get(`https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/${warehouse}/owners/${owner}`, jsondata)
         .then(response => {
             res.status(response.status).json(response.data)
@@ -75,7 +70,6 @@ app.post("/ownerValidate", async (req, res) => {
 
 app.post("/altsku", async (req, res) => {
 
-    // console.log(req.body);
     const jsondata = {
         headers: {
             Authorization: req.body.headers.Authorization
@@ -84,7 +78,6 @@ app.post("/altsku", async (req, res) => {
     const owner = req.body.owner
     const warehouse = req.body.warehouse
     const altsku = req.body.altsku
-    // console.log(owner, warehouse + "...................");
     axios.get(`https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/${warehouse}/altskus/${owner}/${altsku}`, jsondata)
         // https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/BNJNUU88223X2YDS_TST_REDAWESOMEOWL_TST_SCE_PRD_0_wmwhse1/altskus/UCB/1111111
 
@@ -96,7 +89,6 @@ app.post("/altsku", async (req, res) => {
 
 app.post("/controlKey", async (req, res) => {
 
-    // console.log(req.body);
     const jsondata = {
         headers: {
             Authorization: req.body.headers.Authorization
@@ -127,7 +119,6 @@ app.post("/controlKey", async (req, res) => {
     }
 
 
-    // console.log(req.body);
     //https://mingle-ionapi.eu1.inforcloudsuite.com/TRANGILE_DEM/WM/wmwebservice_rest/TRANGILE_DEM_TRANGILE_DEM_SCE_PRD_0_wmwhse5/sproceduremaps/json/NSPRFPC4BI
     //https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/${warehouse}/sproceduremaps/json/NSPRFPC4BI
     // https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/BNJNUU88223X2YDS_TST_REDAWESOMEOWL_TST_SCE_PRD_0_wmwhse1/sproceduremaps/json/NSPRFPC1
@@ -144,7 +135,6 @@ app.post("/controlKey", async (req, res) => {
 
 app.post("/storeSku", async (req, res) => {
 
-    // console.log(req.body);
     const jsondata = {
         headers: {
             Authorization: req.body.headers.Authorization
@@ -195,12 +185,8 @@ app.post("/storeSku", async (req, res) => {
         // }
 
     }
-    // console.log(JSON.stringify(body)  +"BODY");
-    // console.log(req.body.warehouse);
     const warehouse = req.body.warehouse
 
-    // console.log(req.body.headers);
-    // console.log(req.body.jsonParameters);
 
     axios.post(`https://mingle-ionapi.se1.inforcloudsuite.com/BNJNUU88223X2YDS_TST/WM/wmwebservice_rest/${warehouse}/sproceduremaps/json/NSPRFPC4BI`, body, jsondata)
     .then(response => {
